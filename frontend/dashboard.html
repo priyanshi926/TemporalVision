@@ -1,0 +1,709 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>TemporalVision | Dashboard</title>
+
+    <!-- Google Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+
+    <link rel="preconnect"
+          href="https://fonts.gstatic.com"
+          crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+          rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+    <!-- Dashboard CSS -->
+    <link rel="stylesheet"
+          href="css/dashboard.css">
+
+</head>
+
+
+<body>
+
+    <!-- Interactive Background -->
+
+    <div id="particles-js"></div>
+
+    <div class="background-glow glow-one"></div>
+    <div class="background-glow glow-two"></div>
+
+
+    <!-- =========================================
+         SIDEBAR
+    ========================================== -->
+
+    <aside class="sidebar">
+
+        <div class="sidebar-logo">
+
+            <div class="logo-icon">
+
+                <i class="fa-solid fa-eye"></i>
+
+            </div>
+
+            <span>
+                Temporal<span>Vision</span>
+            </span>
+
+        </div>
+
+
+        <div class="system-status">
+
+            <span class="status-dot"></span>
+
+            <div>
+
+                <strong>System Online</strong>
+
+                <small>AI Engine Active</small>
+
+            </div>
+
+        </div>
+
+
+        <nav class="sidebar-nav">
+
+            <p class="nav-title">MAIN</p>
+
+
+            <a href="dashboard.html"
+               class="nav-link active">
+
+                <i class="fa-solid fa-chart-pie"></i>
+
+                Dashboard
+
+            </a>
+
+
+            <a href="index.html"
+               class="nav-link">
+
+                <i class="fa-solid fa-house"></i>
+
+                Home
+
+            </a>
+
+
+            <p class="nav-title">ANALYSIS</p>
+
+ 
+            <a href="upload.html" class="nav-link">
+
+                <i class="fa-solid fa-video"></i>
+
+                Upload Video
+
+            </a>
+
+
+            <a href="#" class="nav-link">
+
+                <i class="fa-solid fa-clock-rotate-left"></i>
+
+                Detection History
+
+            </a>
+
+
+            <a href="#" class="nav-link">
+
+                <i class="fa-solid fa-chart-line"></i>
+
+                Performance
+
+            </a>
+
+
+            <p class="nav-title">SYSTEM</p>
+
+
+            <a href="#" class="nav-link">
+
+                <i class="fa-solid fa-sliders"></i>
+
+                Settings
+
+            </a>
+
+
+        </nav>
+
+
+        <div class="sidebar-bottom">
+
+            <div class="model-info">
+
+                <span>MODEL</span>
+
+                <strong>TemporalVision v1.0</strong>
+
+                <small>YOLOv4 + VGG16 + R-SSD</small>
+
+            </div>
+
+        </div>
+
+    </aside>
+
+
+    <!-- =========================================
+         MAIN CONTENT
+    ========================================== -->
+
+    <main class="main-content">
+
+
+        <!-- Top Bar -->
+
+        <header class="topbar">
+
+            <div>
+
+                <span class="page-label">
+                    AI COMPUTER VISION
+                </span>
+
+                <h1>Detection Dashboard</h1>
+
+            </div>
+
+
+            <div class="top-actions">
+
+                <div class="connection">
+
+                    <span class="status-dot"></span>
+
+                    Connected
+
+                </div>
+
+
+                <button class="icon-button">
+
+                    <i class="fa-solid fa-bell"></i>
+
+                    <span class="notification"></span>
+
+                </button>
+
+
+                <div class="profile">
+
+                    <div class="profile-avatar">
+                        PB
+                    </div>
+
+                    <div>
+
+                        <strong>Vision User</strong>
+
+                        <small>Research Mode</small>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </header>
+
+
+        <!-- =========================================
+             STATISTICS
+        ========================================== -->
+
+        <section class="stats-grid">
+
+
+            <div class="dashboard-stat">
+
+                <div class="stat-icon blue">
+
+                    <i class="fa-solid fa-gauge-high"></i>
+
+                </div>
+
+                <div>
+
+                    <span>Current FPS</span>
+
+                    <h2 id="fpsValue">30.4</h2>
+
+                    <small class="positive">
+
+                        <i class="fa-solid fa-arrow-up"></i>
+
+                        4.2% from average
+
+                    </small>
+
+                </div>
+
+            </div>
+
+
+            <div class="dashboard-stat">
+
+                <div class="stat-icon purple">
+
+                    <i class="fa-solid fa-cube"></i>
+
+                </div>
+
+                <div>
+
+                    <span>Objects Detected</span>
+
+                    <h2 id="objectValue">12</h2>
+
+                    <small>
+
+                        Current frame
+
+                    </small>
+
+                </div>
+
+            </div>
+
+
+            <div class="dashboard-stat">
+
+                <div class="stat-icon green">
+
+                    <i class="fa-solid fa-bullseye"></i>
+
+                </div>
+
+                <div>
+
+                    <span>Confidence</span>
+
+                    <h2 id="confidenceValue">94.2%</h2>
+
+                    <small class="positive">
+
+                        High confidence
+
+                    </small>
+
+                </div>
+
+            </div>
+
+
+            <div class="dashboard-stat">
+
+                <div class="stat-icon orange">
+
+                    <i class="fa-solid fa-clock"></i>
+
+                </div>
+
+                <div>
+
+                    <span>Inference Time</span>
+
+                    <h2 id="inferenceValue">24.6ms</h2>
+
+                    <small>
+
+                        Per frame
+
+                    </small>
+
+                </div>
+
+            </div>
+
+
+        </section>
+
+
+        <!-- =========================================
+             MAIN DASHBOARD GRID
+        ========================================== -->
+
+        <section class="dashboard-grid">
+
+
+            <!-- VIDEO PANEL -->
+
+            <div class="panel video-panel">
+
+                <div class="panel-header">
+
+                    <div>
+
+                        <span class="live-indicator">
+
+                            <span></span>
+
+                            LIVE
+
+                        </span>
+
+                        <h3>Real-Time Detection</h3>
+
+                    </div>
+
+
+                    <div class="video-actions">
+
+                        <button onclick="toggleFullscreen()">
+
+                            <i class="fa-solid fa-expand"></i>
+
+                        </button>
+
+                        <button onclick="toggleSettings()">
+
+                            <i class="fa-solid fa-gear"></i>
+
+                        </button>
+
+                    </div>
+
+                </div>
+
+
+                <div class="video-container"
+                     id="videoContainer">
+
+
+                    <div class="video-grid"></div>
+
+
+                    <!-- Fake Video Background -->
+
+                    <div class="video-placeholder">
+
+                        <i class="fa-solid fa-video"></i>
+
+                        <span>LIVE VIDEO STREAM</span>
+
+                    </div>
+
+
+                    <!-- Detection Box 1 -->
+
+                    <div class="detection-box detection-person">
+
+                        <span>PERSON</span>
+
+                        <strong>96%</strong>
+
+                    </div>
+
+
+                    <!-- Detection Box 2 -->
+
+                    <div class="detection-box detection-car">
+
+                        <span>CAR</span>
+
+                        <strong>91%</strong>
+
+                    </div>
+
+
+                    <!-- Detection Box 3 -->
+
+                    <div class="detection-box detection-sign">
+
+                        <span>TRAFFIC SIGN</span>
+
+                        <strong>88%</strong>
+
+                    </div>
+
+
+                    <!-- Scan Line -->
+
+                    <div class="video-scan"></div>
+
+
+                    <!-- Frame Counter -->
+
+                    <div class="frame-counter">
+
+                        FRAME
+
+                        <strong id="frameNumber">
+                            001248
+                        </strong>
+
+                    </div>
+
+
+                    <!-- Video Status -->
+
+                    <div class="video-status">
+
+                        <span class="status-dot"></span>
+
+                        PROCESSING
+
+                    </div>
+
+
+                </div>
+
+
+                <!-- Video Controls -->
+
+                <div class="video-controls">
+
+
+                    <button id="playButton"
+                            onclick="toggleDetection()">
+
+                        <i class="fa-solid fa-pause"></i>
+
+                    </button>
+
+
+                    <div class="progress-bar">
+
+                        <div class="progress"></div>
+
+                    </div>
+
+
+                    <span class="time">
+
+                        00:24 / 02:15
+
+                    </span>
+
+
+                    <button>
+
+                        <i class="fa-solid fa-volume-high"></i>
+
+                    </button>
+
+
+                </div>
+
+            </div>
+
+
+            <!-- TEMPORAL PANEL -->
+
+            <div class="panel temporal-panel">
+
+                <div class="panel-header">
+
+                    <div>
+
+                        <span class="panel-label">
+                            FEATURE ANALYSIS
+                        </span>
+
+                        <h3>Temporal Aggregation</h3>
+
+                    </div>
+
+
+                    <span class="active-badge">
+
+                        ACTIVE
+
+                    </span>
+
+                </div>
+
+
+                <div class="temporal-visual">
+
+
+                    <div class="temporal-line"></div>
+
+
+                    <div class="frame-node node-1">
+
+                        <span>t-2</span>
+
+                    </div>
+
+
+                    <div class="frame-node node-2">
+
+                        <span>t-1</span>
+
+                    </div>
+
+
+                    <div class="frame-node node-3 active-node">
+
+                        <span>t</span>
+
+                    </div>
+
+
+                    <div class="aggregation-core">
+
+                        <i class="fa-solid fa-layer-group"></i>
+
+                    </div>
+
+
+                </div>
+
+
+                <div class="temporal-description">
+
+                    <h4>Temporal Features</h4>
+
+                    <p>
+
+                        Feature information from consecutive
+                        frames is aggregated to improve
+                        object detection consistency.
+
+                    </p>
+
+                </div>
+
+
+                <div class="feature-bars">
+
+
+                    <div class="feature-row">
+
+                        <div>
+
+                            <span>Spatial Features</span>
+
+                            <strong>92%</strong>
+
+                        </div>
+
+                        <div class="bar">
+
+                            <div style="width:92%"></div>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="feature-row">
+
+                        <div>
+
+                            <span>Temporal Features</span>
+
+                            <strong>87%</strong>
+
+                        </div>
+
+                        <div class="bar">
+
+                            <div style="width:87%"></div>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="feature-row">
+
+                        <div>
+
+                            <span>Feature Fusion</span>
+
+                            <strong>94%</strong>
+
+                        </div>
+
+                        <div class="bar">
+
+                            <div style="width:94%"></div>
+
+                        </div>
+
+                    </div>
+
+
+                </div>
+
+            </div>
+
+
+        </section>
+
+
+        <!-- =========================================
+             BOTTOM GRID
+        ========================================== -->
+
+        <section class="bottom-grid">
+
+
+            <!-- DETECTIONS -->
+
+            <div class="panel detection-panel">
+
+                <div class="panel-header">
+
+                    <div>
+
+                        <span class="panel-label">
+                            OBJECT TRACKING
+                        </span>
+
+                        <h3>Detected Objects</h3>
+
+                    </div>
+
+
+                    <button class="view-button">
+
+                        View All
+
+                        <i class="fa-solid fa-arrow-right"></i>
+
+                    </button>
+
+                </div>
+
+
+                <div class="detection-list">
+
+
+                    <div class="detection-row">
+
+                        <div class="object-info">
+
+                            <div class="object-icon">
+
+                                <i class="fa-solid fa-person"></i>
+
+                            </div>
+
+                            <div>
+
+                                <strong>Person</strong>
+

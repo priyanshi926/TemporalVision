@@ -1,0 +1,937 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>TemporalVision | Video Analysis</title>
+
+
+    <!-- Google Font -->
+
+    <link rel="preconnect"
+          href="https://fonts.googleapis.com">
+
+    <link rel="preconnect"
+          href="https://fonts.gstatic.com"
+          crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+          rel="stylesheet">
+
+
+    <!-- Font Awesome -->
+
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+
+    <!-- CSS -->
+
+    <link rel="stylesheet"
+          href="css/upload.css">
+
+    <style>
+/* =========================================
+   UPLOAD BUTTONS
+========================================= */
+
+.upload-actions {
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+    gap: 12px !important;
+    margin-top: 12px !important;
+}
+
+.upload-actions button.browse-btn,
+.upload-actions button.analyze-btn {
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    gap: 8px !important;
+
+    padding: 10px 20px !important;
+
+    border-radius: 8px !important;
+
+    font-family: inherit !important;
+    font-size: 13px !important;
+    font-weight: 600 !important;
+
+    cursor: pointer !important;
+
+    transition: all 0.25s ease !important;
+}
+
+
+/* Browse */
+
+.upload-actions button.browse-btn {
+    background: rgba(0, 229, 255, 0.08) !important;
+    color: #00e5ff !important;
+
+    border: 1px solid rgba(0, 229, 255, 0.35) !important;
+}
+
+.upload-actions button.browse-btn:hover {
+    background: rgba(0, 229, 255, 0.16) !important;
+    border-color: #00e5ff !important;
+    transform: translateY(-1px) !important;
+}
+
+
+/* Start Analysis */
+
+.upload-actions button.analyze-btn {
+    background: linear-gradient(
+        135deg,
+        #00cfe8,
+        #007bff
+    ) !important;
+
+    color: white !important;
+
+    border: 1px solid rgba(0, 229, 255, 0.45) !important;
+
+    box-shadow:
+        0 5px 18px rgba(0, 150, 255, 0.20) !important;
+}
+
+.upload-actions button.analyze-btn:hover {
+    transform: translateY(-1px) !important;
+
+    box-shadow:
+        0 7px 24px rgba(0, 200, 255, 0.35) !important;
+}
+
+
+/* =========================================
+   SELECTED FILE
+========================================= */
+
+.selected-file-box {
+    width: min(520px, 85%) !important;
+
+    margin: 14px auto 0 !important;
+
+    padding: 11px 15px !important;
+
+    align-items: center !important;
+
+    gap: 12px !important;
+
+    background: rgba(10, 25, 45, 0.80) !important;
+
+    border: 1px solid rgba(0, 229, 255, 0.18) !important;
+
+    border-radius: 9px !important;
+
+    text-align: left !important;
+
+    box-sizing: border-box !important;
+}
+
+.file-icon {
+    width: 36px !important;
+    height: 36px !important;
+
+    flex-shrink: 0 !important;
+
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+
+    border-radius: 8px !important;
+
+    background: rgba(0, 229, 255, 0.10) !important;
+
+    color: #00e5ff !important;
+}
+
+.file-details {
+    min-width: 0 !important;
+}
+
+#fileName {
+    color: #ffffff !important;
+    font-size: 13px !important;
+    font-weight: 600 !important;
+
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
+    white-space: nowrap !important;
+}
+
+#fileSize {
+    margin-top: 3px !important;
+
+    color: #71849b !important;
+
+    font-size: 11px !important;
+}
+
+
+/* =========================================
+   VIDEO PREVIEW
+========================================= */
+
+.video-preview {
+    width: min(620px, 85%) !important;
+
+    max-height: 300px !important;
+
+    margin: 14px auto 0 !important;
+
+    border-radius: 10px !important;
+
+    border: 1px solid rgba(0, 229, 255, 0.18) !important;
+
+    background: #020817 !important;
+}
+</style>
+
+</head>
+
+
+<body>
+
+
+<!-- =========================================
+     BACKGROUND
+========================================= -->
+
+<div id="particles-js"></div>
+
+<div class="background-glow glow-one"></div>
+
+<div class="background-glow glow-two"></div>
+
+
+
+<!-- =========================================
+     SIDEBAR
+========================================= -->
+
+<aside class="sidebar">
+
+
+    <div class="sidebar-logo">
+
+        <div class="logo-icon">
+
+            <i class="fa-solid fa-eye"></i>
+
+        </div>
+
+        <span>
+            Temporal<span>Vision</span>
+        </span>
+
+    </div>
+
+
+
+    <div class="system-status">
+
+        <span class="status-dot"></span>
+
+        <div>
+
+            <strong>System Online</strong>
+
+            <small>AI Engine Active</small>
+
+        </div>
+
+    </div>
+
+
+
+    <nav class="sidebar-nav">
+
+
+        <p class="nav-title">
+            MAIN
+        </p>
+
+
+        <a href="dashboard.html"
+           class="nav-link">
+
+            <i class="fa-solid fa-chart-pie"></i>
+
+            Dashboard
+
+        </a>
+
+
+        <a href="index.html"
+           class="nav-link">
+
+            <i class="fa-solid fa-house"></i>
+
+            Home
+
+        </a>
+
+
+        <p class="nav-title">
+            ANALYSIS
+        </p>
+
+
+        <a href="upload.html"
+           class="nav-link active">
+
+            <i class="fa-solid fa-cloud-arrow-up"></i>
+
+            Upload Video
+
+        </a>
+
+
+        <a href="#"
+           class="nav-link">
+
+            <i class="fa-solid fa-video"></i>
+
+            Live Detection
+
+        </a>
+
+
+        <a href="#"
+           class="nav-link">
+
+            <i class="fa-solid fa-clock-rotate-left"></i>
+
+            History
+
+        </a>
+
+
+        <p class="nav-title">
+            SYSTEM
+        </p>
+
+
+        <a href="#"
+           class="nav-link">
+
+            <i class="fa-solid fa-sliders"></i>
+
+            Settings
+
+        </a>
+
+
+    </nav>
+
+
+
+    <div class="sidebar-bottom">
+
+        <div class="model-info">
+
+            <span>ACTIVE MODEL</span>
+
+            <strong>
+                TemporalVision v1.0
+            </strong>
+
+            <small>
+                YOLOv4 + VGG16 + Recurrent SSD
+            </small>
+
+        </div>
+
+    </div>
+
+</aside>
+
+
+
+<!-- =========================================
+     MAIN CONTENT
+========================================= -->
+
+<main class="main-content">
+
+
+    <!-- TOP BAR -->
+
+    <header class="topbar">
+
+
+        <div>
+
+            <span class="page-label">
+                VIDEO ANALYSIS
+            </span>
+
+            <h1>
+                Upload & Analyse
+            </h1>
+
+        </div>
+
+
+        <div class="top-actions">
+
+
+            <div class="connection">
+
+                <span class="status-dot"></span>
+
+                AI Engine Connected
+
+            </div>
+
+
+            <button class="icon-button">
+
+                <i class="fa-solid fa-bell"></i>
+
+            </button>
+
+
+            <div class="profile">
+
+                <div class="profile-avatar">
+                    TV
+                </div>
+
+                <div>
+
+                    <strong>
+                        Vision User
+                    </strong>
+
+                    <small>
+                        Research Mode
+                    </small>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </header>
+
+
+
+    <!-- =========================================
+         UPLOAD AREA
+    ========================================== -->
+
+    <section class="upload-section">
+
+
+        <div class="section-heading">
+
+            <span>
+                INPUT VIDEO
+            </span>
+
+            <h2>
+                Upload Your Video
+            </h2>
+
+            <p>
+                Upload a video to run real-time object
+                detection and temporal feature aggregation.
+            </p>
+
+        </div>
+
+
+
+        <!-- DROP AREA -->
+
+        <div class="upload-box"
+             id="uploadBox">
+
+
+            <div class="upload-icon">
+
+                <i class="fa-solid fa-cloud-arrow-up"></i>
+
+            </div>
+
+
+            <h3>
+                Drag & Drop Your Video
+            </h3>
+
+
+            <p>
+                or click below to browse your computer
+            </p>
+
+
+            <div class="upload-actions">
+
+    <button
+        type="button"
+        class="browse-btn"
+        onclick="document.getElementById('videoInput').click()">
+
+        <i class="fa-solid fa-folder-open"></i>
+        Browse Video
+
+    </button>
+
+    <input
+        type="file"
+        id="videoInput"
+        accept="video/*"
+        hidden>
+
+    <button
+        type="button"
+        class="analyze-btn"
+        onclick="startAnalysis()">
+
+        <i class="fa-solid fa-microchip"></i>
+        Start AI Analysis
+
+    </button>
+
+</div>
+
+
+<!-- Selected video information -->
+
+<div id="selectedFileBox" class="selected-file-box">
+
+    <div class="file-icon">
+        <i class="fa-solid fa-video"></i>
+    </div>
+
+    <div class="file-details">
+
+        <div id="fileName">
+            No video selected
+        </div>
+
+        <div id="fileSize">
+            Select a video to begin analysis
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- Video preview -->
+
+<video
+    id="videoPreview"
+    class="video-preview"
+    controls
+    style="display:none;">
+</video>
+
+</button>
+
+            <div class="supported">
+
+                <span>
+                    MP4
+                </span>
+
+                <span>
+                    AVI
+                </span>
+
+                <span>
+                    MOV
+                </span>
+
+                <span>
+                    MKV
+                </span>
+
+                <small>
+                    Maximum recommended size: 500 MB
+                </small>
+
+            </div>
+
+
+        </div>
+
+
+
+        <!-- =========================================
+             VIDEO PREVIEW
+        ========================================== -->
+
+        <div class="preview-section"
+             id="previewSection">
+
+
+            <div class="preview-header">
+
+                <div>
+
+                    <span class="section-label">
+                        VIDEO PREVIEW
+                    </span>
+
+                    <h3 id="fileName">
+                        No video selected
+                    </h3>
+
+                </div>
+
+
+                <button class="remove-button"
+                        onclick="removeVideo()">
+
+                    <i class="fa-solid fa-trash"></i>
+
+                    Remove
+
+                </button>
+
+            </div>
+
+
+
+            <div class="preview-container">
+
+                <video id="videoPreview"
+                       controls
+                       style="display:none; width:100%; max-width:700px;">
+                </video>
+
+            </div>
+
+
+            <div class="video-details">
+
+
+                <div>
+
+                    <span>
+                        FILE SIZE
+                    </span>
+
+                    <strong id="fileSize">
+                        --
+                    </strong>
+
+                </div>
+
+
+                <div>
+
+                    <span>
+                        FORMAT
+                    </span>
+
+                    <strong id="fileFormat">
+                        --
+                    </strong>
+
+                </div>
+
+
+                <div>
+
+                    <span>
+                        DURATION
+                    </span>
+
+                    <strong id="videoDuration">
+                        --
+                    </strong>
+
+                </div>
+
+
+            </div>
+
+        </div>
+
+
+
+        <!-- =========================================
+             CONFIGURATION
+        ========================================== -->
+
+        <div class="configuration">
+
+
+            <div class="config-heading">
+
+                <span>
+                    MODEL CONFIGURATION
+                </span>
+
+                <h3>
+                    Detection Settings
+                </h3>
+
+            </div>
+
+
+
+            <div class="config-grid">
+
+
+                <!-- MODEL -->
+
+                <div class="config-card">
+
+                    <label>
+                        Detection Model
+                    </label>
+
+
+                    <div class="select-wrapper">
+
+                        <select id="modelSelect">
+
+                            <option>
+                                YOLOv4
+                            </option>
+
+                            <option>
+                                YOLOv4 + VGG16
+                            </option>
+
+                            <option selected>
+                                TemporalVision Hybrid
+                            </option>
+
+                        </select>
+
+                        <i class="fa-solid fa-chevron-down"></i>
+
+                    </div>
+
+
+                    <small>
+                        Select the detection architecture
+                    </small>
+
+                </div>
+
+
+
+                <!-- CONFIDENCE -->
+
+                <div class="config-card">
+
+                    <label>
+                        Confidence Threshold
+                    </label>
+
+
+                    <div class="range-container">
+
+                        <input type="range"
+                               id="confidenceRange"
+                               min="30"
+                               max="95"
+                               value="50">
+
+                        <span id="confidenceValue">
+                            50%
+                        </span>
+
+                    </div>
+
+
+                    <small>
+                        Minimum detection confidence
+                    </small>
+
+                </div>
+
+
+
+                <!-- TEMPORAL -->
+
+                <div class="config-card temporal-config">
+
+                    <div>
+
+                        <label>
+                            Temporal Aggregation
+                        </label>
+
+                        <small>
+                            Combine consecutive frame features
+                        </small>
+
+                    </div>
+
+
+                    <label class="switch">
+
+                        <input type="checkbox"
+                               id="temporalToggle"
+                               checked>
+
+                        <span class="slider"></span>
+
+                    </label>
+
+                </div>
+
+
+
+                <!-- GPU -->
+
+                <div class="config-card temporal-config">
+
+                    <div>
+
+                        <label>
+                            GPU Acceleration
+                        </label>
+
+                        <small>
+                            Use available GPU resources
+                        </small>
+
+                    </div>
+
+
+                    <label class="switch">
+
+                        <input type="checkbox"
+                               checked>
+
+                        <span class="slider"></span>
+
+                    </label>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- =========================================
+             START BUTTON
+        ========================================== -->
+
+        <div class="start-section">
+
+
+            <div class="ready-status">
+
+                <span class="status-dot"></span>
+
+                <div>
+
+                    <strong>
+                        System Ready
+                    </strong>
+
+                    <small>
+                        Configure your settings and start analysis
+                    </small>
+
+                </div>
+
+            </div>
+
+
+            <button 
+            type="button"
+            id="startAnalysis"
+            class="start-button"
+                    >
+
+                <i class="fa-solid fa-bolt"></i>
+
+                Start AI Analysis
+
+            </button>
+
+        </div>
+
+
+
+        <!-- =========================================
+             PROCESSING
+        ========================================== -->
+
+        <div class="processing-section"
+             id="processingSection">
+
+
+            <div class="processing-icon">
+
+                <i class="fa-solid fa-brain"></i>
+
+            </div>
+
+
+            <h3>
+                Analysing Video
+            </h3>
+
+
+            <p>
+                TemporalVision is processing your video...
+            </p>
+
+
+            <div class="processing-bar">
+
+                <div id="processingProgress"></div>
+
+            </div>
+
+
+            <div class="processing-info">
+
+                <span>
+                    Processing frames
+                </span>
+
+                <strong id="processingPercent">
+                    0%
+                </strong>
+
+            </div>
+
+
+        </div>
+
+
+    </section>
+
+
+</main>
+
+
+
+<!-- =========================================
+     SCRIPTS
+========================================= -->
+
+<script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+
+<script src="js/upload.js"></script>
+
+
+</body>
+
+</html>
+

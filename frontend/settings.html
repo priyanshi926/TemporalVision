@@ -1,0 +1,776 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>TemporalVision | Settings</title>
+
+    <link rel="stylesheet" href="css/settings.css">
+
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+
+<body>
+
+    <!-- Background -->
+    <div id="particles-js"></div>
+
+    <!-- ================= SIDEBAR ================= -->
+
+    <aside class="sidebar">
+
+        <div class="brand">
+            <div class="brand-icon">
+                <i class="fa-solid fa-eye"></i>
+            </div>
+
+            <div>
+                <h2>TemporalVision</h2>
+                <span>AI DETECTION SYSTEM</span>
+            </div>
+        </div>
+
+        <div class="system-status">
+            <span class="status-dot"></span>
+            SYSTEM ONLINE
+        </div>
+
+        <nav class="sidebar-nav">
+
+            <a href="dashboard.html">
+                <i class="fa-solid fa-chart-line"></i>
+                <span>Dashboard</span>
+            </a>
+
+            <a href="index.html">
+                <i class="fa-solid fa-house"></i>
+                <span>Home</span>
+            </a>
+
+            <a href="upload.html">
+                <i class="fa-solid fa-cloud-arrow-up"></i>
+                <span>Upload Video</span>
+            </a>
+
+            <a href="live.html">
+                <i class="fa-solid fa-video"></i>
+                <span>Live Detection</span>
+            </a>
+
+            <a href="results.html">
+                <i class="fa-solid fa-chart-column"></i>
+                <span>Analysis Results</span>
+            </a>
+
+            <a href="history.html">
+                <i class="fa-solid fa-clock-rotate-left"></i>
+                <span>History</span>
+            </a>
+
+            <a href="settings.html" class="active">
+                <i class="fa-solid fa-gear"></i>
+                <span>Settings</span>
+            </a>
+
+        </nav>
+
+        <!-- Model Card -->
+
+        <div class="model-card">
+
+            <div class="model-icon">
+                <i class="fa-solid fa-brain"></i>
+            </div>
+
+            <div>
+                <small>ACTIVE MODEL</small>
+                <strong id="sidebarModel">
+                    TemporalVision Hybrid
+                </strong>
+            </div>
+
+            <span class="model-status"></span>
+
+        </div>
+
+        <!-- User -->
+
+        <div class="user-card">
+
+            <div class="user-avatar">
+                <i class="fa-solid fa-user"></i>
+            </div>
+
+            <div class="user-info">
+                <strong>Research User</strong>
+                <span>Administrator</span>
+            </div>
+
+            <i class="fa-solid fa-ellipsis-vertical"></i>
+
+        </div>
+
+    </aside>
+
+
+    <!-- ================= MAIN CONTENT ================= -->
+
+    <main class="main-content">
+
+        <!-- Topbar -->
+
+        <header class="topbar">
+
+            <div>
+                <h1>System Settings</h1>
+                <p>Configure your AI detection and temporal processing system</p>
+            </div>
+
+            <div class="topbar-right">
+
+                <div class="connection-status">
+                    <span></span>
+                    Backend Connected
+                </div>
+
+                <button class="notification-btn">
+                    <i class="fa-regular fa-bell"></i>
+                </button>
+
+            </div>
+
+        </header>
+
+
+        <!-- ================= SETTINGS ================= -->
+
+        <section class="settings-container">
+
+            <!-- MODEL SELECTION -->
+
+            <div class="settings-card model-selection">
+
+                <div class="card-header">
+
+                    <div class="header-icon">
+                        <i class="fa-solid fa-microchip"></i>
+                    </div>
+
+                    <div>
+                        <h2>Detection Model</h2>
+                        <p>Select the AI architecture used for detection</p>
+                    </div>
+
+                </div>
+
+
+                <div class="model-options">
+
+                    <div class="model-option"
+                         data-model="YOLOv4">
+
+                        <div class="option-icon">
+                            <i class="fa-solid fa-crosshairs"></i>
+                        </div>
+
+                        <div class="option-content">
+                            <h3>YOLOv4</h3>
+
+                            <p>
+                                Fast real-time object detection
+                            </p>
+
+                            <span>High Speed</span>
+                        </div>
+
+                        <div class="radio-circle"></div>
+
+                    </div>
+
+
+                    <div class="model-option"
+                         data-model="YOLOv4 + VGG16">
+
+                        <div class="option-icon">
+                            <i class="fa-solid fa-network-wired"></i>
+                        </div>
+
+                        <div class="option-content">
+                            <h3>YOLOv4 + VGG16</h3>
+
+                            <p>
+                                Enhanced feature extraction
+                            </p>
+
+                            <span>High Accuracy</span>
+                        </div>
+
+                        <div class="radio-circle"></div>
+
+                    </div>
+
+
+                    <div class="model-option selected"
+                         data-model="TemporalVision Hybrid">
+
+                        <div class="option-icon">
+                            <i class="fa-solid fa-brain"></i>
+                        </div>
+
+                        <div class="option-content">
+                            <h3>TemporalVision Hybrid</h3>
+
+                            <p>
+                                YOLOv4 + VGG16 + Recurrent SSD
+                            </p>
+
+                            <span>Temporal AI</span>
+                        </div>
+
+                        <div class="radio-circle"></div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- DETECTION SETTINGS -->
+
+            <div class="settings-card">
+
+                <div class="card-header">
+
+                    <div class="header-icon">
+                        <i class="fa-solid fa-sliders"></i>
+                    </div>
+
+                    <div>
+                        <h2>Detection Settings</h2>
+                        <p>Control detection sensitivity and processing</p>
+                    </div>
+
+                </div>
+
+
+                <div class="setting-row">
+
+                    <div class="setting-info">
+
+                        <strong>Confidence Threshold</strong>
+
+                        <span>
+                            Minimum confidence required for detection
+                        </span>
+
+                    </div>
+
+                    <div class="range-control">
+
+                        <input
+                            type="range"
+                            id="confidence"
+                            min="0.1"
+                            max="1"
+                            step="0.01"
+                            value="0.50"
+                        >
+
+                        <strong id="confidenceValue">
+                            50%
+                        </strong>
+
+                    </div>
+
+                </div>
+
+
+                <div class="setting-row">
+
+                    <div class="setting-info">
+
+                        <strong>NMS Threshold</strong>
+
+                        <span>
+                            Non-Maximum Suppression threshold
+                        </span>
+
+                    </div>
+
+                    <div class="range-control">
+
+                        <input
+                            type="range"
+                            id="nms"
+                            min="0.1"
+                            max="1"
+                            step="0.01"
+                            value="0.45"
+                        >
+
+                        <strong id="nmsValue">
+                            45%
+                        </strong>
+
+                    </div>
+
+                </div>
+
+
+                <div class="setting-row">
+
+                    <div class="setting-info">
+
+                        <strong>Input Resolution</strong>
+
+                        <span>
+                            Resolution used by the detection model
+                        </span>
+
+                    </div>
+
+                    <select id="resolution">
+
+                        <option value="416">416 × 416</option>
+                        <option value="608">608 × 608</option>
+                        <option value="832">832 × 832</option>
+
+                    </select>
+
+                </div>
+
+
+                <div class="setting-row">
+
+                    <div class="setting-info">
+
+                        <strong>Target FPS</strong>
+
+                        <span>
+                            Desired processing frame rate
+                        </span>
+
+                    </div>
+
+                    <select id="targetFPS">
+
+                        <option value="15">15 FPS</option>
+                        <option value="24">24 FPS</option>
+                        <option value="30" selected>30 FPS</option>
+                        <option value="60">60 FPS</option>
+
+                    </select>
+
+                </div>
+
+            </div>
+
+
+            <!-- TEMPORAL SETTINGS -->
+
+            <div class="settings-card">
+
+                <div class="card-header">
+
+                    <div class="header-icon">
+                        <i class="fa-solid fa-layer-group"></i>
+                    </div>
+
+                    <div>
+                        <h2>Temporal Processing</h2>
+                        <p>Configure temporal feature aggregation</p>
+                    </div>
+
+                </div>
+
+
+                <div class="setting-row">
+
+                    <div class="setting-info">
+
+                        <strong>Temporal Aggregation</strong>
+
+                        <span>
+                            Combine information from consecutive frames
+                        </span>
+
+                    </div>
+
+                    <label class="switch">
+
+                        <input
+                            type="checkbox"
+                            id="temporalAggregation"
+                            checked
+                        >
+
+                        <span class="slider"></span>
+
+                    </label>
+
+                </div>
+
+
+                <div class="setting-row">
+
+                    <div class="setting-info">
+
+                        <strong>Recurrent Memory</strong>
+
+                        <span>
+                            Maintain temporal feature memory between frames
+                        </span>
+
+                    </div>
+
+                    <label class="switch">
+
+                        <input
+                            type="checkbox"
+                            id="recurrentMemory"
+                            checked
+                        >
+
+                        <span class="slider"></span>
+
+                    </label>
+
+                </div>
+
+
+                <div class="setting-row">
+
+                    <div class="setting-info">
+
+                        <strong>Temporal Window</strong>
+
+                        <span>
+                            Number of consecutive frames used
+                        </span>
+
+                    </div>
+
+                    <select id="temporalWindow">
+
+                        <option value="3">3 Frames</option>
+                        <option value="5">5 Frames</option>
+                        <option value="7" selected>7 Frames</option>
+                        <option value="9">9 Frames</option>
+
+                    </select>
+
+                </div>
+
+
+                <!-- Temporal Visualization -->
+
+                <div class="temporal-preview">
+
+                    <div class="frame-label">TEMPORAL MEMORY</div>
+
+                    <div class="frame-track">
+
+                        <div class="memory-frame">F1</div>
+                        <div class="memory-frame">F2</div>
+                        <div class="memory-frame">F3</div>
+                        <div class="memory-frame active">F4</div>
+                        <div class="memory-frame active">F5</div>
+                        <div class="memory-frame active">F6</div>
+                        <div class="memory-frame active">F7</div>
+
+                    </div>
+
+                    <div class="memory-line"></div>
+
+                    <div class="memory-status">
+                        <span class="status-dot"></span>
+                        Temporal feature memory active
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- HARDWARE -->
+
+            <div class="settings-card">
+
+                <div class="card-header">
+
+                    <div class="header-icon">
+                        <i class="fa-solid fa-server"></i>
+                    </div>
+
+                    <div>
+                        <h2>Hardware & Performance</h2>
+                        <p>Configure processing resources</p>
+                    </div>
+
+                </div>
+
+
+                <div class="setting-row">
+
+                    <div class="setting-info">
+
+                        <strong>GPU Acceleration</strong>
+
+                        <span>
+                            Use GPU for faster AI inference
+                        </span>
+
+                    </div>
+
+                    <label class="switch">
+
+                        <input
+                            type="checkbox"
+                            id="gpuAcceleration"
+                            checked
+                        >
+
+                        <span class="slider"></span>
+
+                    </label>
+
+                </div>
+
+
+                <div class="setting-row">
+
+                    <div class="setting-info">
+
+                        <strong>Performance Mode</strong>
+
+                        <span>
+                            Optimize system for real-time processing
+                        </span>
+
+                    </div>
+
+                    <select id="performanceMode">
+
+                        <option value="balanced">Balanced</option>
+                        <option value="speed">Maximum Speed</option>
+                        <option value="accuracy">Maximum Accuracy</option>
+
+                    </select>
+
+                </div>
+
+            </div>
+
+
+            <!-- DETECTION CLASSES -->
+
+            <div class="settings-card classes-card">
+
+                <div class="card-header">
+
+                    <div class="header-icon">
+                        <i class="fa-solid fa-cubes"></i>
+                    </div>
+
+                    <div>
+                        <h2>Detection Classes</h2>
+                        <p>Select objects the AI should detect</p>
+                    </div>
+
+                </div>
+
+
+                <div class="class-grid">
+
+                    <label class="class-item">
+                        <input type="checkbox" value="person" checked>
+                        <span>
+                            <i class="fa-solid fa-person"></i>
+                            Person
+                        </span>
+                    </label>
+
+
+                    <label class="class-item">
+                        <input type="checkbox" value="car" checked>
+                        <span>
+                            <i class="fa-solid fa-car"></i>
+                            Car
+                        </span>
+                    </label>
+
+
+                    <label class="class-item">
+                        <input type="checkbox" value="motorcycle" checked>
+                        <span>
+                            <i class="fa-solid fa-motorcycle"></i>
+                            Motorcycle
+                        </span>
+                    </label>
+
+
+                    <label class="class-item">
+                        <input type="checkbox" value="bus" checked>
+                        <span>
+                            <i class="fa-solid fa-bus"></i>
+                            Bus
+                        </span>
+                    </label>
+
+
+                    <label class="class-item">
+                        <input type="checkbox" value="truck" checked>
+                        <span>
+                            <i class="fa-solid fa-truck"></i>
+                            Truck
+                        </span>
+                    </label>
+
+
+                    <label class="class-item">
+                        <input type="checkbox" value="bicycle" checked>
+                        <span>
+                            <i class="fa-solid fa-bicycle"></i>
+                            Bicycle
+                        </span>
+                    </label>
+
+
+                    <label class="class-item">
+                        <input type="checkbox" value="traffic-light">
+                        <span>
+                            <i class="fa-solid fa-traffic-light"></i>
+                            Traffic Light
+                        </span>
+                    </label>
+
+
+                    <label class="class-item">
+                        <input type="checkbox" value="traffic-sign">
+                        <span>
+                            <i class="fa-solid fa-road"></i>
+                            Traffic Sign
+                        </span>
+                    </label>
+
+                </div>
+
+            </div>
+
+
+            <!-- SYSTEM INFORMATION -->
+
+            <div class="settings-card system-card">
+
+                <div class="card-header">
+
+                    <div class="header-icon">
+                        <i class="fa-solid fa-circle-info"></i>
+                    </div>
+
+                    <div>
+                        <h2>System Information</h2>
+                        <p>Current TemporalVision configuration</p>
+                    </div>
+
+                </div>
+
+
+                <div class="system-info-grid">
+
+                    <div>
+                        <span>Detection Engine</span>
+                        <strong>YOLOv4</strong>
+                    </div>
+
+                    <div>
+                        <span>Feature Extractor</span>
+                        <strong>VGG16</strong>
+                    </div>
+
+                    <div>
+                        <span>Temporal Network</span>
+                        <strong>Recurrent SSD</strong>
+                    </div>
+
+                    <div>
+                        <span>Processing Framework</span>
+                        <strong>OpenCV</strong>
+                    </div>
+
+                    <div>
+                        <span>Backend</span>
+                        <strong>Python</strong>
+                    </div>
+
+                    <div>
+                        <span>System Status</span>
+                        <strong class="online">
+                            ● Online
+                        </strong>
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- ACTION BUTTONS -->
+
+            <div class="settings-actions">
+
+                <button
+                    class="reset-btn"
+                    id="resetBtn">
+
+                    <i class="fa-solid fa-rotate-left"></i>
+                    Reset Defaults
+
+                </button>
+
+
+                <button
+                    class="save-btn"
+                    id="saveBtn">
+
+                    <i class="fa-solid fa-floppy-disk"></i>
+                    Save Configuration
+
+                </button>
+
+            </div>
+
+
+        </section>
+
+    </main>
+
+
+    <!-- Toast -->
+
+    <div class="toast" id="toast">
+
+        <i class="fa-solid fa-circle-check"></i>
+
+        <span>Configuration saved successfully</span>
+
+    </div>
+
+
+    <!-- Particles -->
+
+    <script src="https://cdn.jsdelivr.net/npm/particles.js"></script>
+
+    <!-- Settings JS -->
+
+    <script src="js/settings.js"></script>
+
+</body>
+</html>

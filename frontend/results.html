@@ -1,0 +1,766 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>TemporalVision | Analysis Results</title>
+
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+    <!-- Particles -->
+    <script src="https://cdn.jsdelivr.net/npm/particles.js"></script>
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="css/results.css">
+
+    <link rel="stylesheet" href="css/ui-enhancements.css">
+</head>
+
+<body>
+
+<!-- Interactive Background -->
+<div id="particles-js"></div>
+
+<!-- ================= SIDEBAR ================= -->
+
+<aside class="sidebar">
+
+    <div class="logo">
+        <div class="logo-icon">
+            <i class="fa-solid fa-eye"></i>
+        </div>
+
+        <div>
+            <h2>Temporal<span>Vision</span></h2>
+            <p>AI DETECTION SYSTEM</p>
+        </div>
+    </div>
+
+    <div class="system-status">
+        <span class="status-dot"></span>
+        SYSTEM ONLINE
+    </div>
+
+    <nav class="sidebar-nav">
+
+        <a href="dashboard.html">
+            <i class="fa-solid fa-chart-line"></i>
+            <span>Dashboard</span>
+        </a>
+
+        <a href="index.html">
+            <i class="fa-solid fa-house"></i>
+            <span>Home</span>
+        </a>
+
+        <a href="upload.html">
+            <i class="fa-solid fa-cloud-arrow-up"></i>
+            <span>Upload Video</span>
+        </a>
+
+        <a href="#">
+            <i class="fa-solid fa-video"></i>
+            <span>Live Detection</span>
+        </a>
+
+        <a href="results.html" class="active">
+            <i class="fa-solid fa-microscope"></i>
+            <span>Analysis Results</span>
+        </a>
+
+        <a href="#">
+            <i class="fa-solid fa-clock-rotate-left"></i>
+            <span>History</span>
+        </a>
+
+        <a href="#">
+            <i class="fa-solid fa-gear"></i>
+            <span>Settings</span>
+        </a>
+
+    </nav>
+
+    <div class="model-card">
+
+        <div class="model-icon">
+            <i class="fa-solid fa-brain"></i>
+        </div>
+
+        <div>
+            <h4>AI MODEL</h4>
+            <p>TemporalVision v1.0</p>
+            <small>YOLOv4 + VGG16 + RSSD</small>
+        </div>
+
+    </div>
+
+</aside>
+
+
+<!-- ================= MAIN CONTENT ================= -->
+
+<main class="main-content">
+
+    <!-- TOP BAR -->
+
+    <header class="topbar">
+
+        <div>
+            <span class="page-label">AI ANALYSIS</span>
+            <h1>Detection Results</h1>
+        </div>
+
+        <div class="topbar-right">
+
+            <div class="engine-status">
+                <span class="status-dot"></span>
+                AI ENGINE CONNECTED
+            </div>
+
+            <div class="profile">
+                <div class="profile-avatar">
+                    <i class="fa-solid fa-user"></i>
+                </div>
+
+                <div>
+                    <strong>Research User</strong>
+                    <small>Administrator</small>
+                </div>
+            </div>
+
+        </div>
+
+    </header>
+
+
+    <!-- ================= ACTION BAR ================= -->
+
+    <section class="action-bar">
+
+        <div>
+            <span class="analysis-id">
+                ANALYSIS ID: TV-2026-0923
+            </span>
+
+            <h2>
+                Vehicle Detection Analysis
+            </h2>
+
+            <p>
+                Temporal feature aggregation analysis completed
+            </p>
+        </div>
+        <div class="tv-video-toolbar">
+
+    <button class="tv-tool-btn" id="copyAnalysisBtn">
+        <i class="fa-solid fa-copy"></i>
+        Copy Analysis ID
+    </button>
+
+    <button class="tv-tool-btn" id="exportJsonBtn">
+        <i class="fa-solid fa-file-code"></i>
+        Export JSON
+    </button>
+
+    <button class="tv-tool-btn" id="printReportBtn">
+        <i class="fa-solid fa-print"></i>
+        Print Report
+    </button>
+
+</div>
+
+        <div class="action-buttons">
+
+            <a href="upload.html" class="btn secondary-btn">
+                <i class="fa-solid fa-arrow-left"></i>
+                New Analysis
+            </a>
+
+            <button class="btn primary-btn" onclick="downloadReport()">
+                <i class="fa-solid fa-download"></i>
+                Download Report
+            </button>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================= MAIN GRID ================= -->
+
+    <section class="results-grid">
+
+
+        <!-- VIDEO RESULT -->
+
+        <div class="glass-card video-card">
+
+            <div class="card-header">
+
+                <div>
+                    <span class="section-label">
+                        PROCESSED VIDEO
+                    </span>
+
+                    <h3>
+                        Detection Output
+                    </h3>
+                </div>
+
+                <div class="live-badge">
+                    <span></span>
+                    PROCESSED
+                </div>
+
+            </div>
+
+
+            <div class="video-container">
+
+                <video
+    id="resultVideo"
+    controls
+    style="width:100%; height:auto; display:block;">
+
+    Your browser does not support video playback.
+
+</video>
+<div class="tv-info-panel">
+
+    <div class="tv-info-card">
+
+        <div class="label">
+            Processing Status
+        </div>
+
+        <div class="value">
+            <span class="tv-live-dot"></span>
+           <span id="processingStatus">Complete</span>
+        </div>
+
+    </div>
+
+
+    <div class="tv-info-card">
+
+        <div class="label">
+            Frames Processed
+        </div>
+
+        <div
+            class="value"
+            id="enhancedFrames"
+        >
+            --
+        </div>
+
+    </div>
+
+
+    <div class="tv-info-card">
+
+        <div class="label">
+            Processing FPS
+        </div>
+
+        <div
+            class="value"
+            id="enhancedFPS"
+        >
+            --
+        </div>
+
+    </div>
+
+
+    <div class="tv-info-card">
+
+        <div class="label">
+            Avg Confidence
+        </div>
+
+        <div
+            class="value"
+            id="enhancedConfidence"
+        >
+            --
+        </div>
+
+    </div>
+
+</div>
+
+            <div class="tv-video-toolbar">
+
+    <button class="tv-tool-btn" id="playPauseBtn">
+        <i class="fa-solid fa-play"></i>
+        Play
+    </button>
+
+    <button class="tv-tool-btn" id="restartVideoBtn">
+        <i class="fa-solid fa-rotate-left"></i>
+        Restart
+    </button>
+
+    <button class="tv-tool-btn" id="fullscreenBtn">
+        <i class="fa-solid fa-expand"></i>
+        Fullscreen
+    </button>
+
+    <button class="tv-tool-btn" id="pipBtn">
+        <i class="fa-solid fa-clone"></i>
+        Picture in Picture
+    </button>
+
+    <button class="tv-tool-btn" id="screenshotBtn">
+        <i class="fa-solid fa-camera"></i>
+        Screenshot
+    </button>
+
+    <button class="tv-tool-btn" id="downloadVideoBtn">
+        <i class="fa-solid fa-download"></i>
+        Download Video
+    </button>
+
+    <select id="speedSelect" class="tv-speed-select">
+        <option value="0.5">0.5×</option>
+        <option value="1" selected>1×</option>
+        <option value="1.5">1.5×</option>
+        <option value="2">2×</option>
+    </select>
+
+</div>
+
+
+       <div class="video-controls-info">
+
+    <div>
+        <i class="fa-solid fa-film"></i>
+        <span id="frameCount">-- Frames</span>
+    </div>
+
+    <div>
+        <i class="fa-solid fa-gauge-high"></i>
+        <span id="fpsValue">-- FPS</span>
+    </div>
+
+    <div>
+        <i class="fa-solid fa-clock"></i>
+        <span id="durationValue">-- Duration</span>
+    </div>
+
+</div>     
+
+        </div>
+
+
+        <!-- DETECTION SUMMARY -->
+
+        <div class="glass-card summary-card">
+
+            <div class="card-header">
+
+                <div>
+                    <span class="section-label">
+                        DETECTION SUMMARY
+                    </span>
+                      <input
+    type="text"
+    id="detectionSearch"
+    class="tv-search-box"
+    placeholder="🔍 Search detected object..."
+>
+                    <h3>
+                        Objects Detected
+                    </h3>
+                </div>
+
+                <i class="fa-solid fa-crosshairs card-icon"></i>
+
+            </div>
+
+
+            <div class="object-list">
+
+
+                <div class="object-item">
+
+                    <div class="object-name">
+
+                        <div class="object-icon">
+                            <i class="fa-solid fa-car"></i>
+                        </div>
+
+                        <div>
+                            <strong>Cars</strong>
+                            <small>Vehicles</small>
+                        </div>
+
+                    </div>
+
+                    <div class="object-count">
+                        <strong>86</strong>
+                        <span>94.2%</span>
+                    </div>
+
+                </div>
+
+
+                <div class="object-item">
+
+                    <div class="object-name">
+
+                        <div class="object-icon">
+                            <i class="fa-solid fa-person"></i>
+                        </div>
+
+                        <div>
+                            <strong>Persons</strong>
+                            <small>Pedestrians</small>
+                        </div>
+
+                    </div>
+
+                    <div class="object-count">
+                        <strong>43</strong>
+                        <span>91.7%</span>
+                    </div>
+
+                </div>
+
+
+                <div class="object-item">
+
+                    <div class="object-name">
+
+                        <div class="object-icon">
+                            <i class="fa-solid fa-truck"></i>
+                        </div>
+
+                        <div>
+                            <strong>Trucks</strong>
+                            <small>Heavy Vehicles</small>
+                        </div>
+
+                    </div>
+
+                    <div class="object-count">
+                        <strong>18</strong>
+                        <span>88.4%</span>
+                    </div>
+
+                </div>
+
+
+                <div class="object-item">
+
+                    <div class="object-name">
+
+                        <div class="object-icon">
+                            <i class="fa-solid fa-motorcycle"></i>
+                        </div>
+
+                        <div>
+                            <strong>Motorcycles</strong>
+                            <small>Two Wheelers</small>
+                        </div>
+
+                    </div>
+
+                    <div class="object-count">
+                        <strong>27</strong>
+                        <span>86.9%</span>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+    </section>
+
+
+    <!-- ================= METRICS ================= -->
+
+    <section class="metrics-section">
+
+        <div class="section-heading">
+
+            <div>
+                <span class="section-label">
+                    MODEL PERFORMANCE
+                </span>
+
+                <h2>
+                    AI Performance Metrics
+                </h2>
+            </div>
+
+        </div>
+
+
+        <div class="metrics-grid">
+
+
+            <div class="metric-card">
+
+                <div class="metric-icon">
+                    <i class="fa-solid fa-bullseye"></i>
+                </div>
+
+                <div>
+                    <span>PRECISION</span>
+                    <strong>94.2%</strong>
+                </div>
+
+                <div class="metric-progress">
+                    <div style="width:94.2%"></div>
+                </div>
+
+            </div>
+
+
+            <div class="metric-card">
+
+                <div class="metric-icon">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                </div>
+
+                <div>
+                    <span>RECALL</span>
+                    <strong>91.8%</strong>
+                </div>
+
+                <div class="metric-progress">
+                    <div style="width:91.8%"></div>
+                </div>
+
+            </div>
+
+
+            <div class="metric-card">
+
+                <div class="metric-icon">
+                    <i class="fa-solid fa-chart-simple"></i>
+                </div>
+
+                <div>
+                    <span>mAP</span>
+                    <strong>93.6%</strong>
+                </div>
+
+                <div class="metric-progress">
+                    <div style="width:93.6%"></div>
+                </div>
+
+            </div>
+
+
+            <div class="metric-card">
+
+                <div class="metric-icon">
+                    <i class="fa-solid fa-arrows-rotate"></i>
+                </div>
+
+                <div>
+                    <span>TEMPORAL CONSISTENCY</span>
+                    <strong>96.1%</strong>
+                </div>
+
+                <div class="metric-progress">
+                    <div style="width:96.1%"></div>
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================= ANALYTICS ================= -->
+
+    <section class="analytics-grid">
+
+
+        <!-- FPS GRAPH -->
+
+        <div class="glass-card chart-card">
+
+            <div class="card-header">
+
+                <div>
+                    <span class="section-label">
+                        REAL-TIME PERFORMANCE
+                    </span>
+
+                    <h3>FPS Over Time</h3>
+                </div>
+
+                <span class="chart-value">
+                    28.6 FPS
+                </span>
+
+            </div>
+
+            <div class="chart-area">
+
+                <canvas id="fpsChart"></canvas>
+
+            </div>
+
+        </div>
+
+
+        <!-- TEMPORAL GRAPH -->
+
+        <div class="glass-card chart-card">
+
+            <div class="card-header">
+
+                <div>
+                    <span class="section-label">
+                        TEMPORAL ANALYSIS
+                    </span>
+
+                    <h3>Feature Stability</h3>
+                </div>
+
+                <span class="chart-value">
+                    96.1%
+                </span>
+
+            </div>
+
+            <div class="chart-area">
+
+                <canvas id="temporalChart"></canvas>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================= TEMPORAL PROCESSING ================= -->
+
+    <section class="glass-card temporal-card">
+
+        <div class="card-header">
+
+            <div>
+
+                <span class="section-label">
+                    TEMPORAL FEATURE AGGREGATION
+                </span>
+
+                <h3>
+                    Frame-by-Frame Consistency
+                </h3>
+
+            </div>
+
+            <div class="aggregation-status">
+                <span></span>
+                ACTIVE
+            </div>
+
+        </div>
+
+
+        <div class="timeline">
+
+            <div class="timeline-line"></div>
+
+
+            <div class="timeline-point active">
+                <span>F01</span>
+            </div>
+
+            <div class="timeline-point active">
+                <span>F02</span>
+            </div>
+
+            <div class="timeline-point active">
+                <span>F03</span>
+            </div>
+
+            <div class="timeline-point active">
+                <span>F04</span>
+            </div>
+
+            <div class="timeline-point active">
+                <span>F05</span>
+            </div>
+
+            <div class="timeline-point active">
+                <span>F06</span>
+            </div>
+
+            <div class="timeline-point active">
+                <span>F07</span>
+            </div>
+
+            <div class="timeline-point">
+                <span>F08</span>
+            </div>
+
+        </div>
+
+
+        <div class="temporal-info">
+
+            <div>
+                <i class="fa-solid fa-layer-group"></i>
+
+                <div>
+                    <strong>Feature Aggregation</strong>
+                    <span>7 consecutive frames</span>
+                </div>
+            </div>
+
+            <div>
+                <i class="fa-solid fa-brain"></i>
+
+                <div>
+                    <strong>Recurrent SSD</strong>
+                    <span>Temporal feature memory enabled</span>
+                </div>
+            </div>
+
+            <div>
+                <i class="fa-solid fa-shield-halved"></i>
+
+                <div>
+                    <strong>Detection Stability</strong>
+                    <span>96.1% consistent</span>
+                </div>
+            </div>
+
+        </div>
+
+    </section>
+
+
+</main>
+
+
+<!-- Chart.js -->
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<!-- JavaScript -->
+
+<script src="js/results.js"></script>
+<script src="js/ui-enhancements.js"></script>
+</body>
+</html>

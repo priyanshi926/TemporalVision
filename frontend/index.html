@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>TemporalVision | AI Object Detection</title>
+
+    <!-- Google Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+          rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="css/style.css">
+
+</head>
+
+
+<body>
+
+    <!-- Interactive Background -->
+
+    <div id="particles-js"></div>
+
+    <div class="background-glow glow-one"></div>
+    <div class="background-glow glow-two"></div>
+
+
+    <!-- Navigation -->
+
+    <header class="navbar">
+
+        <div class="logo">
+
+            <div class="logo-icon">
+                <i class="fa-solid fa-eye"></i>
+            </div>
+
+            <span>Temporal<span class="highlight">Vision</span></span>
+
+        </div>
+
+
+        <nav>
+
+            <a href="#home" class="active">Home</a>
+
+            <a href="#technology">Technology</a>
+
+            <a href="#features">Features</a>
+
+            <a href="#about">About</a>
+
+        </nav>
+
+
+        <button class="nav-button">
+
+            <i class="fa-solid fa-play"></i>
+
+            Launch System
+
+        </button>
+
+    </header>
+
+
+
+    <!-- Hero Section -->
+
+    <main id="home">
+
+        <section class="hero">
+
+
+            <!-- Left Side -->
+
+            <div class="hero-content">
+
+
+                <div class="status-badge">
+
+                    <span class="status-dot"></span>
+
+                    AI SYSTEM ONLINE
+
+                </div>
+
+
+                <h1>
+
+                    Real-Time
+
+                    <span>Object Detection</span>
+
+                    With Temporal Intelligence
+
+                </h1>
+
+
+                <p>
+
+                    TemporalVision combines deep learning,
+                    temporal feature aggregation and real-time
+                    computer vision to understand objects
+                    across consecutive video frames.
+
+                </p>
+
+
+                <div class="hero-buttons">
+
+                    <button class="primary-btn"
+                            onclick="window.location.href='upload.html'">
+
+                        <i class="fa-solid fa-video"></i>
+
+                        Start Detection
+
+                    </button>
+
+
+                    <button class="secondary-btn"
+                            onclick="openDashboard()">
+
+                        <i class="fa-solid fa-chart-line"></i>
+
+                        Explore Dashboard
+
+                    </button>
+
+                </div>
+
+
+                <!-- Statistics -->
+
+                <div class="stats">
+
+                    <div class="stat">
+
+                        <h3>30+</h3>
+
+                        <p>FPS</p>
+
+                    </div>
+
+
+                    <div class="stat">
+
+                        <h3>94%</h3>
+
+                        <p>Accuracy</p>
+
+                    </div>
+
+
+                    <div class="stat">
+
+                        <h3>Real-Time</h3>
+
+                        <p>Processing</p>
+
+                    </div>
+
+                </div>
+
+
+            </div>
+
+
+
+            <!-- Right Side -->
+
+            <div class="hero-visual">
+
+
+                <div class="scanner-ring"></div>
+
+
+                <div class="vision-card">
+
+
+                    <div class="card-top">
+
+                        <span>
+
+                            <span class="live-dot"></span>
+
+                            LIVE ANALYSIS
+
+                        </span>
+
+                        <span>
+
+                            30.4 FPS
+
+                        </span>
+
+                    </div>
+
+
+                    <!-- Fake Detection Area -->
+
+                    <div class="detection-area">
+
+
+                        <div class="grid-lines"></div>
+
+
+                        <div class="target-box box-one">
+
+                            <span class="label">
+                                PERSON 96%
+                            </span>
+
+                        </div>
+
+
+                        <div class="target-box box-two">
+
+                            <span class="label">
+                                CAR 91%
+                            </span>
+
+                        </div>
+
+
+                        <div class="target-box box-three">
+
+                            <span class="label">
+                                SIGN 88%
+                            </span>
+
+                        </div>
+
+
+                        <div class="scan-line"></div>
+
+
+                        <div class="center-icon">
+
+                            <i class="fa-solid fa-brain"></i>
+
+                        </div>
+
+
+                    </div>
+
+
+                    <!-- Bottom Information -->
+
+                    <div class="card-bottom">
+
+
+                        <div>
+
+                            <small>OBJECTS</small>
+
+                            <strong>12</strong>
+
+                        </div>
+
+
+                        <div>
+
+                            <small>CONFIDENCE</small>
+
+                            <strong>94.2%</strong>
+
+                        </div>
+
+
+                        <div>
+
+                            <small>TEMPORAL</small>
+
+                            <strong class="active-text">
+                                ACTIVE
+                            </strong>
+
+                        </div>
+
+
+                    </div>
+
+
+                </div>
+
+
+                <!-- Floating Cards -->
+
+
+                <div class="floating-card card-left">
+
+                    <i class="fa-solid fa-cube"></i>
+
+                    <div>
+
+                        <span>Temporal Features</span>
+
+                        <strong>Aggregating...</strong>
+
+                    </div>
+
+                </div>
+
+
+                <div class="floating-card card-right">
+
+                    <i class="fa-solid fa-bolt"></i>
+
+                    <div>
+
+                        <span>Inference</span>
+
+                        <strong>24.6 ms</strong>
+
+                    </div>
+
+                </div>
+
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+
+    <!-- Technology Section -->
+
+    <section id="technology" class="info-section">
+
+        <div class="section-heading">
+
+            <span>CORE TECHNOLOGY</span>
+
+            <h2>Built For Intelligent Vision</h2>
+
+            <p>
+
+                A hybrid architecture designed for
+                real-time video understanding.
+
+            </p>
+
+        </div>
+
+
+        <div class="technology-grid">
+
+
+            <div class="technology-card">
+
+                <i class="fa-solid fa-network-wired"></i>
+
+                <h3>YOLOv4</h3>
+
+                <p>
+
+                    Fast object detection for
+                    real-time video streams.
+
+                </p>
+
+            </div>
+
+
+            <div class="technology-card">
+
+                <i class="fa-solid fa-layer-group"></i>
+
+                <h3>VGG16</h3>
+
+                <p>
+
+                    Deep feature extraction for
+                    visual representation.
+
+                </p>
+
+            </div>
+
+
+            <div class="technology-card">
+
+                <i class="fa-solid fa-clock-rotate-left"></i>
+
+                <h3>Temporal Aggregation</h3>
+
+                <p>
+
+                    Uses information from
+                    consecutive frames.
+
+                </p>
+
+            </div>
+
+
+            <div class="technology-card">
+
+                <i class="fa-solid fa-video"></i>
+
+                <h3>Recurrent SSD</h3>
+
+                <p>
+
+                    Enables continuous
+                    object detection across video.
+
+                </p>
+
+            </div>
+
+
+        </div>
+
+    </section>
+
+
+
+    <!-- JavaScript -->
+
+    <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+
+    <script src="js/script.js"></script>
+
+
+</body>
+
+</html>

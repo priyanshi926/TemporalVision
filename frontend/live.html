@@ -1,0 +1,773 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>TemporalVision | Live Detection</title>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+        rel="stylesheet">
+
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+    <script src="https://cdn.jsdelivr.net/npm/particles.js"></script>
+
+    <link rel="stylesheet" href="css/live.css">
+
+</head>
+
+
+<body>
+
+<div id="particles-js"></div>
+
+
+<!-- ================= SIDEBAR ================= -->
+
+<aside class="sidebar">
+
+    <div class="logo">
+
+        <div class="logo-icon">
+            <i class="fa-solid fa-eye"></i>
+        </div>
+
+        <div>
+
+            <h2>Temporal<span>Vision</span></h2>
+
+            <p>AI DETECTION SYSTEM</p>
+
+        </div>
+
+    </div>
+
+
+    <div class="system-status">
+
+        <span class="status-dot"></span>
+
+        SYSTEM ONLINE
+
+    </div>
+
+
+    <nav class="sidebar-nav">
+
+        <a href="dashboard.html">
+            <i class="fa-solid fa-chart-line"></i>
+            <span>Dashboard</span>
+        </a>
+
+
+        <a href="index.html">
+            <i class="fa-solid fa-house"></i>
+            <span>Home</span>
+        </a>
+
+
+        <a href="upload.html">
+            <i class="fa-solid fa-cloud-arrow-up"></i>
+            <span>Upload Video</span>
+        </a>
+
+
+        <a href="live.html" class="active">
+            <i class="fa-solid fa-video"></i>
+            <span>Live Detection</span>
+        </a>
+
+
+        <a href="results.html">
+            <i class="fa-solid fa-microscope"></i>
+            <span>Analysis Results</span>
+        </a>
+
+
+        <a href="history.html">
+            <i class="fa-solid fa-clock-rotate-left"></i>
+            <span>History</span>
+        </a>
+
+
+        <a href="settings.html">
+            <i class="fa-solid fa-gear"></i>
+            <span>Settings</span>
+        </a>
+
+    </nav>
+
+
+    <div class="model-card">
+
+        <i class="fa-solid fa-brain"></i>
+
+        <div>
+
+            <h4>ACTIVE MODEL</h4>
+
+            <p>TemporalVision</p>
+
+            <small>YOLOv4 + VGG16 + RSSD</small>
+
+        </div>
+
+    </div>
+
+</aside>
+
+
+
+<!-- ================= MAIN ================= -->
+
+<main class="main-content">
+
+
+    <!-- TOPBAR -->
+
+    <header class="topbar">
+
+        <div>
+
+            <span class="page-label">
+                REAL-TIME COMPUTER VISION
+            </span>
+
+            <h1>Live Detection</h1>
+
+        </div>
+
+
+        <div class="top-right">
+
+            <div class="engine-status">
+
+                <span class="status-dot"></span>
+
+                AI ENGINE ACTIVE
+
+            </div>
+
+
+            <div class="profile">
+
+                <div class="profile-avatar">
+
+                    <i class="fa-solid fa-user"></i>
+
+                </div>
+
+                <div>
+
+                    <strong>Research User</strong>
+
+                    <small>Administrator</small>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </header>
+
+
+
+    <!-- ================= CONTROL BAR ================= -->
+
+    <section class="control-bar">
+
+
+        <div class="source-selector">
+
+            <span>SOURCE</span>
+
+            <button
+                class="source-btn active"
+                onclick="selectSource('camera', this)">
+
+                <i class="fa-solid fa-camera"></i>
+
+                Camera
+
+            </button>
+
+
+            <button
+                class="source-btn"
+                onclick="selectSource('video', this)">
+
+                <i class="fa-solid fa-film"></i>
+
+                Video
+
+            </button>
+
+        </div>
+
+
+
+        <div class="live-controls">
+
+            <button
+                class="control-btn"
+                id="startBtn"
+                onclick="startDetection()">
+
+                <i class="fa-solid fa-play"></i>
+
+                Start Detection
+
+            </button>
+
+
+            <button
+                class="control-btn stop"
+                onclick="stopDetection()">
+
+                <i class="fa-solid fa-stop"></i>
+
+                Stop
+
+            </button>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- ================= DETECTION AREA ================= -->
+
+    <section class="detection-layout">
+
+
+        <!-- VIDEO -->
+
+        <div class="video-panel">
+
+
+            <div class="panel-header">
+
+                <div>
+
+                    <span class="section-label">
+                        LIVE FEED
+                    </span>
+
+                    <h2>AI Vision Stream</h2>
+
+                </div>
+
+
+                <div class="stream-status">
+
+                    <span></span>
+
+                    LIVE
+
+                </div>
+
+            </div>
+
+
+
+            <div class="vision-container">
+
+
+                <div class="camera-placeholder">
+
+                    <div class="camera-icon">
+
+                        <i class="fa-solid fa-camera"></i>
+
+                    </div>
+
+                    <h3>Camera Feed</h3>
+
+                    <p>
+                        Start detection to activate AI vision
+                    </p>
+
+                </div>
+
+
+                <!-- Detection Boxes -->
+
+                <div
+                    class="detect-box car">
+
+                    <div>
+                        CAR
+                        <strong>96%</strong>
+                    </div>
+
+                </div>
+
+
+                <div
+                    class="detect-box person">
+
+                    <div>
+                        PERSON
+                        <strong>93%</strong>
+                    </div>
+
+                </div>
+
+
+                <div
+                    class="detect-box truck">
+
+                    <div>
+                        TRUCK
+                        <strong>91%</strong>
+                    </div>
+
+                </div>
+
+
+                <!-- HUD -->
+
+                <div class="hud top-left">
+
+                    <span>MODEL</span>
+
+                    <strong>YOLOv4 + RSSD</strong>
+
+                </div>
+
+
+                <div class="hud top-right">
+
+                    <span>FPS</span>
+
+                    <strong id="fps">28.6</strong>
+
+                </div>
+
+
+                <div class="hud bottom-left">
+
+                    <span>FRAME</span>
+
+                    <strong id="frameNumber">
+                        000001
+                    </strong>
+
+                </div>
+
+
+                <div class="hud bottom-right">
+
+                    <span>LATENCY</span>
+
+                    <strong id="latency">
+                        34ms
+                    </strong>
+
+                </div>
+
+
+            </div>
+
+
+
+            <div class="stream-footer">
+
+                <div>
+
+                    <i class="fa-solid fa-circle"></i>
+
+                    Detection Engine
+
+                    <strong>Ready</strong>
+
+                </div>
+
+
+                <div>
+
+                    <i class="fa-solid fa-memory"></i>
+
+                    GPU
+
+                    <strong>Enabled</strong>
+
+                </div>
+
+
+                <div>
+
+                    <i class="fa-solid fa-layer-group"></i>
+
+                    Temporal Memory
+
+                    <strong>7 Frames</strong>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- DETECTION PANEL -->
+
+        <div class="detection-panel">
+
+
+            <div class="panel-header">
+
+                <div>
+
+                    <span class="section-label">
+                        DETECTION
+                    </span>
+
+                    <h2>Objects</h2>
+
+                </div>
+
+                <i class="fa-solid fa-crosshairs panel-icon"></i>
+
+            </div>
+
+
+
+            <!-- TOTAL -->
+
+            <div class="total-detection">
+
+                <span>TOTAL OBJECTS</span>
+
+                <strong id="totalObjects">
+                    14
+                </strong>
+
+                <small>
+                    Currently tracked
+                </small>
+
+            </div>
+
+
+
+            <!-- OBJECTS -->
+
+            <div class="object-row">
+
+                <div class="object-info">
+
+                    <div class="object-symbol">
+                        <i class="fa-solid fa-car"></i>
+                    </div>
+
+                    <div>
+
+                        <strong>Cars</strong>
+
+                        <small>Vehicles</small>
+
+                    </div>
+
+                </div>
+
+                <span id="cars">
+                    8
+                </span>
+
+            </div>
+
+
+
+            <div class="object-row">
+
+                <div class="object-info">
+
+                    <div class="object-symbol">
+                        <i class="fa-solid fa-person"></i>
+                    </div>
+
+                    <div>
+
+                        <strong>Persons</strong>
+
+                        <small>Pedestrians</small>
+
+                    </div>
+
+                </div>
+
+                <span id="persons">
+                    3
+                </span>
+
+            </div>
+
+
+
+            <div class="object-row">
+
+                <div class="object-info">
+
+                    <div class="object-symbol">
+                        <i class="fa-solid fa-truck"></i>
+                    </div>
+
+                    <div>
+
+                        <strong>Trucks</strong>
+
+                        <small>Heavy vehicles</small>
+
+                    </div>
+
+                </div>
+
+                <span id="trucks">
+                    2
+                </span>
+
+            </div>
+
+
+
+            <div class="object-row">
+
+                <div class="object-info">
+
+                    <div class="object-symbol">
+                        <i class="fa-solid fa-motorcycle"></i>
+                    </div>
+
+                    <div>
+
+                        <strong>Motorcycles</strong>
+
+                        <small>Two wheelers</small>
+
+                    </div>
+
+                </div>
+
+                <span id="bikes">
+                    1
+                </span>
+
+            </div>
+
+
+
+            <!-- CONFIDENCE -->
+
+            <div class="confidence">
+
+                <div>
+
+                    <span>AVERAGE CONFIDENCE</span>
+
+                    <strong id="confidenceValue">
+                        93.4%
+                    </strong>
+
+                </div>
+
+                <div class="confidence-bar">
+
+                    <div
+                        id="confidenceBar"
+                        style="width:93.4%">
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- ================= LOWER ANALYTICS ================= -->
+
+    <section class="analytics-row">
+
+
+        <!-- TEMPORAL MEMORY -->
+
+        <div class="glass-card temporal-panel">
+
+            <div class="panel-header">
+
+                <div>
+
+                    <span class="section-label">
+                        TEMPORAL FEATURE AGGREGATION
+                    </span>
+
+                    <h2>Temporal Memory</h2>
+
+                </div>
+
+                <span class="active-badge">
+                    ACTIVE
+                </span>
+
+            </div>
+
+
+            <div class="memory-visual">
+
+                <div class="memory-node">
+                    F1
+                </div>
+
+                <div class="memory-line"></div>
+
+                <div class="memory-node">
+                    F2
+                </div>
+
+                <div class="memory-line"></div>
+
+                <div class="memory-node">
+                    F3
+                </div>
+
+                <div class="memory-line"></div>
+
+                <div class="memory-node">
+                    F4
+                </div>
+
+                <div class="memory-line"></div>
+
+                <div class="memory-node current">
+                    F5
+                </div>
+
+                <div class="memory-line"></div>
+
+                <div class="memory-node">
+                    F6
+                </div>
+
+                <div class="memory-line"></div>
+
+                <div class="memory-node">
+                    F7
+                </div>
+
+            </div>
+
+
+            <p class="memory-description">
+
+                Consecutive frames are aggregated to preserve
+                temporal information and improve detection
+                stability.
+
+            </p>
+
+        </div>
+
+
+
+        <!-- SYSTEM PERFORMANCE -->
+
+        <div class="glass-card performance-panel">
+
+            <div class="panel-header">
+
+                <div>
+
+                    <span class="section-label">
+                        SYSTEM PERFORMANCE
+                    </span>
+
+                    <h2>AI Engine</h2>
+
+                </div>
+
+                <i class="fa-solid fa-microchip panel-icon"></i>
+
+            </div>
+
+
+            <div class="performance-item">
+
+                <div>
+
+                    <span>GPU UTILIZATION</span>
+
+                    <strong>68%</strong>
+
+                </div>
+
+                <div class="performance-bar">
+
+                    <div style="width:68%"></div>
+
+                </div>
+
+            </div>
+
+
+            <div class="performance-item">
+
+                <div>
+
+                    <span>MEMORY USAGE</span>
+
+                    <strong>54%</strong>
+
+                </div>
+
+                <div class="performance-bar">
+
+                    <div style="width:54%"></div>
+
+                </div>
+
+            </div>
+
+
+            <div class="performance-item">
+
+                <div>
+
+                    <span>CPU USAGE</span>
+
+                    <strong>41%</strong>
+
+                </div>
+
+                <div class="performance-bar">
+
+                    <div style="width:41%"></div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+</main>
+
+
+<script src="js/live.js"></script>
+
+</body>
+
+</html>

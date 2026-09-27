@@ -1,0 +1,264 @@
+/* =========================================
+   TEMPORALVISION UI ENHANCEMENTS
+========================================= */
+
+:root {
+    --tv-bg: #020817;
+    --tv-card: #071426;
+    --tv-card2: #0b192d;
+    --tv-border: rgba(0, 229, 255, 0.18);
+    --tv-text: #e8f7ff;
+    --tv-muted: #8295ad;
+    --tv-cyan: #00e5ff;
+    --tv-green: #00ffb3;
+    --tv-danger: #ff4d6d;
+    --tv-shadow: 0 15px 45px rgba(0,0,0,.35);
+}
+
+/* ===============================
+   TOAST
+================================ */
+
+.tv-toast-container {
+    position: fixed;
+    top: 25px;
+    right: 25px;
+    z-index: 99999;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.tv-toast {
+    min-width: 280px;
+    max-width: 380px;
+    padding: 15px 18px;
+    border-radius: 12px;
+    background: rgba(7, 20, 38, .96);
+    border: 1px solid rgba(0,229,255,.25);
+    box-shadow: var(--tv-shadow);
+    color: white;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    animation: tvToastIn .3s ease;
+    backdrop-filter: blur(12px);
+}
+
+.tv-toast.success {
+    border-color: rgba(0,255,179,.5);
+}
+
+.tv-toast.error {
+    border-color: rgba(255,77,109,.5);
+}
+
+.tv-toast i {
+    color: var(--tv-cyan);
+}
+
+@keyframes tvToastIn {
+    from {
+        transform: translateX(120%);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+/* ===============================
+   ENHANCED VIDEO TOOLBAR
+================================ */
+
+.tv-video-toolbar {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 15px;
+}
+
+.tv-tool-btn {
+    border: 1px solid rgba(0,229,255,.18);
+    background: rgba(0,229,255,.05);
+    color: #dffaff;
+    padding: 9px 13px;
+    border-radius: 9px;
+    cursor: pointer;
+    transition: .25s;
+}
+
+.tv-tool-btn:hover {
+    background: rgba(0,229,255,.14);
+    border-color: rgba(0,229,255,.5);
+    transform: translateY(-2px);
+}
+
+.tv-tool-btn i {
+    margin-right: 6px;
+    color: var(--tv-cyan);
+}
+
+/* ===============================
+   SPEED SELECT
+================================ */
+
+.tv-speed-select {
+    background: #071426;
+    color: white;
+    border: 1px solid rgba(0,229,255,.2);
+    padding: 8px 12px;
+    border-radius: 8px;
+    outline: none;
+}
+
+/* ===============================
+   ANALYSIS INFO
+================================ */
+
+.tv-info-panel {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 15px;
+    margin: 20px 0;
+}
+
+.tv-info-card {
+    background: linear-gradient(
+        145deg,
+        rgba(7,20,38,.95),
+        rgba(11,25,45,.85)
+    );
+    border: 1px solid var(--tv-border);
+    border-radius: 14px;
+    padding: 18px;
+    transition: .3s;
+}
+
+.tv-info-card:hover {
+    transform: translateY(-4px);
+    border-color: rgba(0,229,255,.45);
+}
+
+.tv-info-card .label {
+    font-size: 11px;
+    color: var(--tv-muted);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.tv-info-card .value {
+    font-size: 25px;
+    font-weight: 700;
+    margin-top: 7px;
+    color: var(--tv-text);
+}
+
+/* ===============================
+   DETECTION SEARCH
+================================ */
+
+.tv-search-box {
+    width: 100%;
+    box-sizing: border-box;
+    background: rgba(255,255,255,.03);
+    border: 1px solid rgba(0,229,255,.15);
+    color: white;
+    padding: 12px 15px;
+    border-radius: 10px;
+    margin-bottom: 15px;
+    outline: none;
+}
+
+.tv-search-box:focus {
+    border-color: var(--tv-cyan);
+}
+
+/* ===============================
+   PULSE STATUS
+================================ */
+
+.tv-live-dot {
+    width: 9px;
+    height: 9px;
+    border-radius: 50%;
+    background: var(--tv-green);
+    display: inline-block;
+    margin-right: 8px;
+    box-shadow: 0 0 12px var(--tv-green);
+    animation: tvPulse 1.5s infinite;
+}
+
+@keyframes tvPulse {
+    0%,100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+
+    50% {
+        opacity: .45;
+        transform: scale(.7);
+    }
+}
+
+/* ===============================
+   LIGHT THEME
+================================ */
+
+body.tv-light-theme {
+    background: #f4f8fb !important;
+    color: #142033 !important;
+}
+
+body.tv-light-theme .tv-info-card,
+body.tv-light-theme .tv-tool-btn,
+body.tv-light-theme .tv-speed-select,
+body.tv-light-theme .tv-search-box {
+    background: white;
+    color: #142033;
+}
+
+/* ===============================
+   SIDEBAR COLLAPSE
+================================ */
+
+body.tv-sidebar-collapsed .sidebar {
+    width: 75px !important;
+}
+
+body.tv-sidebar-collapsed .sidebar span,
+body.tv-sidebar-collapsed .sidebar .nav-text {
+    display: none !important;
+}
+
+body.tv-sidebar-collapsed .main-content {
+    margin-left: 75px !important;
+}
+
+/* ===============================
+   RESPONSIVE
+================================ */
+
+@media(max-width: 900px) {
+
+    .tv-info-panel {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media(max-width: 600px) {
+
+    .tv-info-panel {
+        grid-template-columns: 1fr;
+    }
+
+    .tv-video-toolbar {
+        flex-direction: column;
+    }
+
+    .tv-tool-btn {
+        width: 100%;
+    }
+}
